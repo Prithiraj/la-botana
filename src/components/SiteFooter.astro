@@ -1,0 +1,31 @@
+---
+import { business } from '../data/site.js';
+const base = import.meta.env.BASE_URL;
+---
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <div class="footer-brand">LA BOTANA</div>
+      <p class="muted">Mexican food counter and market on State Road 60 in Lake Wales.</p>
+      <address class="small" style="font-style:normal">
+        <a href={business.directionsUrl} target="_blank" rel="noreferrer">{business.address}</a><br />
+        <a href={business.phoneHref}>{business.phone}</a>
+      </address>
+    </div>
+    <div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href={base}>Home</a>
+        <a href={`${base}menu/`}>Menu</a>
+        <a href={`${base}visit/`}>Visit</a>
+        <a href={business.doordashUrl} target="_blank" rel="noreferrer">DoorDash ↗</a>
+        <a href={business.uberEatsUrl} target="_blank" rel="noreferrer">Uber Eats ↗</a>
+      </nav>
+      <p class="footer-fine" style="margin-top:18px">Menu items, ordering availability and operating hours can change. Current public listings show 6:00 AM–9:00 PM daily; call ahead when timing or a specific item matters.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-action-bar" aria-label="Quick actions">
+  <a class="btn btn-secondary" href={`${base}menu/`}>Menu</a>
+  <a class="btn btn-primary" href={business.directionsUrl} target="_blank" rel="noreferrer">Directions</a>
+</div>
