@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhotoFrame from '../components/PhotoFrame.astro';
+import { business, menuCategories } from '../data/site.js';
+const base = import.meta.env.BASE_URL;
+const preview = [menuCategories[2], menuCategories[1], menuCategories[4]];
+---
+<BaseLayout current="home" path="">
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Lake Wales · State Road 60</p>
+        <h1>Tacos, burritos, caldos—and a Mexican market under one roof.</h1>
+        <p class="lead">A casual Mexican food counter in Lake Wales. See the menu, get directions, or choose an available ordering option.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href={`${base}menu/`}>See the menu</a>
+          <a class="btn btn-secondary" href={business.directionsUrl} target="_blank" rel="noreferrer">Get directions</a>
+        </div>
+      </div>
+
+      <div class="hero-media" aria-label="Photos of La Botana">
+        <PhotoFrame
+          src={business.photos.food.src}
+          alt={business.photos.food.alt}
+          eager={true}
+          className="hero-photo"
+        />
+        <PhotoFrame
+          src={business.photos.storefront.src}
+          alt={business.photos.storefront.alt}
+          eager={true}
+          className="hero-storefront"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="operational-strip" aria-label="La Botana practical information">
+    <div class="shell operational-grid">
+      <div class="operational-item">
+        <span class="operational-label">Find us</span>
+        <a class="operational-value" href={business.directionsUrl} target="_blank" rel="noreferrer">{business.shortAddress}</a>
+      </div>
+      <div class="operational-item">
+        <span class="operational-label">Listed hours</span>
+        <span class="operational-value">{business.hoursLabel}</span>
+      </div>
+      <div class="operational-item">
+        <span class="operational-label">Call</span>
+        <a class="operational-value" href={business.phoneHref}>{business.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">From the counter</p>
+        <h2>Start with what you’re hungry for.</h2>
+        <p>The menu goes well beyond tacos. These are a few current menu highlights; prices and availability can change.</p>
+      </div>
+
+      <div class="menu-preview">
+        {preview.map((category) => (
+          <div class="preview-group">
+            <div class="preview-label">{category.name}</div>
+            <div class="preview-items">
+              {category.items.slice(0, 3).map(([name]) => (
+                <div class="preview-item"><span>{name}</span><span aria-hidden="true">→</span></div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="cta-row" style="margin-top:28px">
+        <a class="btn btn-primary" href={`${base}menu/`}>View the full menu</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="painted-band" aria-hidden="true">
+    <div class="painted-band-track">TACOS · BURRITOS · CALDOS · TORTAS · TAMALES · MARISCOS · LAKE WALES · STATE ROAD 60</div>
+  </div>
+
+  <section id="what-to-expect" class="section surface-alt">
+    <div class="shell expect-grid">
+      <PhotoFrame
+        src={business.photos.storefront.src}
+        alt={business.photos.storefront.alt}
+        className="expect-photo"
+        caption="The green La Botana storefront on State Road 60."
+      />
+      <div>
+        <p class="eyebrow">What to expect</p>
+        <h2>A market stop with a food counter inside.</h2>
+        <p class="lead" style="margin-top:18px">La Botana is more casual than a conventional full-service restaurant. Order at the food counter, then dine in or take it with you.</p>
+        <ul class="fact-list">
+          <li><span><strong>Counter ordering.</strong> Place your order at the food counter rather than waiting for table service.</span></li>
+          <li><span><strong>Mexican market setting.</strong> Groceries, snacks and familiar market products are part of the experience.</span></li>
+          <li><span><strong>Dine in or take out.</strong> Current listings show both options.</span></li>
+          <li><span><strong>Easy practical stop.</strong> The storefront sits directly on State Road 60 in Lake Wales.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">The real place</p>
+        <h2>Food first. Storefront included.</h2>
+        <p>These are actual La Botana listing photos rather than unrelated stock imagery.</p>
+      </div>
+      <div class="photo-rhythm">
+        <PhotoFrame src={business.photos.collage.src} alt={business.photos.collage.alt} />
+        <PhotoFrame src={business.photos.food.src} alt={business.photos.food.alt} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="shell action-panel">
+      <div>
+        <p class="eyebrow" style="color:#fff8ee">Ready when you are</p>
+        <h2>Pick the next step that fits.</h2>
+      </div>
+      <p>Browse the menu before you drive over, get directions to the State Road 60 storefront, or check a delivery partner for current availability.</p>
+      <div class="cta-row">
+        <a class="btn btn-cream" href={`${base}menu/`}>See the menu</a>
+        <a class="btn btn-secondary" href={business.directionsUrl} target="_blank" rel="noreferrer">Get directions</a>
+        <a class="btn btn-secondary" href={`${base}visit/`}>Visit & ordering</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
