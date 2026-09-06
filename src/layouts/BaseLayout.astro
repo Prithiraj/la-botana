@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { business } from '../data/site.js';
+
+const {
+  title = 'La Botana | Mexican Restaurant & Market in Lake Wales, FL',
+  description = 'Explore La Botana’s Mexican menu, find directions, current listed hours, and ordering options on State Road 60 in Lake Wales.',
+  current = 'home',
+  path = ''
+} = Astro.props;
+
+const siteRoot = new URL(import.meta.env.BASE_URL, Astro.site);
+const canonical = new URL(path, siteRoot).toString();
+const menuUrl = new URL('menu/', siteRoot).toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: business.name,
+  url: siteRoot.toString(),
+  telephone: '+1-863-679-3335',
+  servesCuisine: 'Mexican',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '2415 State Road 60 E',
+    addressLocality: 'Lake Wales',
+    addressRegion: 'FL',
+    postalCode: '33898',
+    addressCountry: 'US'
+  },
+  hasMenu: menuUrl
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1E5A36" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={business.photos.storefront.src} />
+    <meta property="og:image:alt" content={business.photos.storefront.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <SiteHeader current={current} />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
