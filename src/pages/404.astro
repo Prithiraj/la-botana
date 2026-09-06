@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="Page not found | La Botana" description="The page you requested could not be found." path="404/">
+  <section class="not-found section">
+    <div class="shell">
+      <p class="eyebrow">404</p>
+      <h1>That page isn’t on the counter.</h1>
+      <p class="lead" style="margin:0 auto 26px">Head back to La Botana’s menu, visit information, or home page.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn btn-primary" href={base}>Home</a>
+        <a class="btn btn-secondary" href={`${base}menu/`}>Menu</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
