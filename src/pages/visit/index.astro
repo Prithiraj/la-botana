@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PhotoFrame from '../../components/PhotoFrame.astro';
+import { business } from '../../data/site.js';
+---
+<BaseLayout
+  current="visit"
+  path="visit/"
+  title="Hours & Directions | La Botana — Lake Wales, FL"
+  description="Find La Botana on State Road 60 in Lake Wales, with current listed hours, phone number, directions and available ordering options."
+>
+  <section class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">Visit La Botana</p>
+      <h1>Easy to find once you know the green storefront.</h1>
+      <p class="lead">Use the address below for directions, call if timing is critical, or check a delivery partner before placing an order.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell visit-grid">
+      <div>
+        <p class="eyebrow">State Road 60 · Lake Wales</p>
+        <h2>Directions, phone and listed hours.</h2>
+        <div class="info-card-grid" style="margin-top:28px">
+          <section class="info-card">
+            <h3>Address</h3>
+            <address>
+              {business.address}
+            </address>
+            <div class="cta-row" style="margin-top:18px">
+              <a class="btn btn-primary" href={business.directionsUrl} target="_blank" rel="noreferrer">Open directions ↗</a>
+            </div>
+          </section>
+          <section class="info-card">
+            <h3>Call</h3>
+            <p><a href={business.phoneHref}>{business.phone}</a></p>
+            <p class="small muted">Useful for holiday hours, item availability or other time-sensitive questions.</p>
+          </section>
+        </div>
+
+        <section class="info-card" style="margin-top:16px">
+          <h3>Current listed hours</h3>
+          <table class="hours-table">
+            <tbody>
+              <tr><th scope="row">Monday</th><td>6:00 AM–9:00 PM</td></tr>
+              <tr><th scope="row">Tuesday</th><td>6:00 AM–9:00 PM</td></tr>
+              <tr><th scope="row">Wednesday</th><td>6:00 AM–9:00 PM</td></tr>
+              <tr><th scope="row">Thursday</th><td>6:00 AM–9:00 PM</td></tr>
+              <tr><th scope="row">Friday</th><td>6:00 AM–9:00 PM</td></tr>
+              <tr><th scope="row">Saturday</th><td>6:00 AM–9:00 PM</td></tr>
+              <tr><th scope="row">Sunday</th><td>6:00 AM–9:00 PM</td></tr>
+            </tbody>
+          </table>
+          <p class="small muted" style="margin-top:14px">Several current public listings agree on these hours, while an older listing differs. Call ahead if you are arriving near opening time or on a holiday.</p>
+        </section>
+      </div>
+
+      <PhotoFrame
+        src={business.photos.storefront.src}
+        alt={business.photos.storefront.alt}
+        className="expect-photo"
+        eager={true}
+        caption="Look for the bright green facade and La Botana sign."
+      />
+    </div>
+  </section>
+
+  <section class="section surface-alt">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Ordering</p>
+        <h2>Choose the channel that works today.</h2>
+        <p>La Botana appears on major delivery platforms. Availability and delivery radius are handled by each platform.</p>
+      </div>
+      <div class="order-grid">
+        <article class="order-card">
+          <strong>DoorDash</strong>
+          <p class="muted">Check the current merchant menu, pickup or delivery availability, and platform pricing.</p>
+          <a class="btn btn-primary" href={business.doordashUrl} target="_blank" rel="noreferrer">Open DoorDash ↗</a>
+        </article>
+        <article class="order-card">
+          <strong>Uber Eats</strong>
+          <p class="muted">Check current delivery availability, featured items and platform pricing.</p>
+          <a class="btn btn-primary" href={business.uberEatsUrl} target="_blank" rel="noreferrer">Open Uber Eats ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell expect-grid">
+      <PhotoFrame src={business.photos.collage.src} alt={business.photos.collage.alt} className="expect-photo" />
+      <div>
+        <p class="eyebrow">Before you arrive</p>
+        <h2>Casual, counter-service, market setting.</h2>
+        <ul class="fact-list">
+          <li><span>Order at the food counter rather than expecting formal table service.</span></li>
+          <li><span>Current listings indicate both dine-in and takeout.</span></li>
+          <li><span>The grocery/market environment is part of the place, not a separate visual theme invented for the website.</span></li>
+          <li><span>If a specific dish or service matters, call before making the trip.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
