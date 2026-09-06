@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { business, menuCategories } from '../../data/site.js';
+---
+<BaseLayout
+  current="menu"
+  path="menu/"
+  title="Menu | La Botana — Lake Wales, FL"
+  description="Browse tacos, burritos, caldos, tortas, appetizers and more from La Botana in Lake Wales. Check current ordering platforms for availability and prices."
+>
+  <section class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">La Botana menu</p>
+      <h1>Find your way around the counter.</h1>
+      <p class="lead">A practical guide to current menu highlights. Prices are intentionally omitted here because in-store and delivery pricing can change.</p>
+      <div class="cta-row" style="margin-top:24px">
+        <a class="btn btn-primary" href={business.doordashUrl} target="_blank" rel="noreferrer">Check DoorDash</a>
+        <a class="btn btn-secondary" href={business.uberEatsUrl} target="_blank" rel="noreferrer">Check Uber Eats</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="category-nav-wrap">
+    <nav class="shell category-nav" aria-label="Menu categories">
+      {menuCategories.map((category) => <a href={`#${category.id}`}>{category.name}</a>)}
+    </nav>
+  </div>
+
+  <section class="section-tight">
+    <div class="shell menu-shell">
+      <div class="menu-note">
+        <strong>Menu note:</strong> Items below are drawn from current La Botana menu listings. Availability, ingredients and prices can change; call or use an ordering partner when a specific item matters.
+      </div>
+
+      {menuCategories.map((category) => (
+        <section id={category.id} class="menu-category">
+          <div class="menu-category-head">
+            <p class="eyebrow">Menu category</p>
+            <h2>{category.name}</h2>
+            <p>{category.intro}</p>
+          </div>
+          <ul class="menu-list">
+            {category.items.map(([name, description]) => (
+              <li class="menu-row">
+                <div class="menu-name">{name}</div>
+                <p class="menu-description">{description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-tight surface-alt">
+    <div class="shell action-panel">
+      <div>
+        <p class="eyebrow" style="color:#fff8ee">Next step</p>
+        <h2>Want today’s exact selection?</h2>
+      </div>
+      <p>Delivery platforms are the best current public source for live ordering availability. For an in-store question, call La Botana directly.</p>
+      <div class="cta-row">
+        <a class="btn btn-cream" href={business.phoneHref}>Call {business.phone}</a>
+        <a class="btn btn-secondary" href={business.doordashUrl} target="_blank" rel="noreferrer">DoorDash ↗</a>
+        <a class="btn btn-secondary" href={business.uberEatsUrl} target="_blank" rel="noreferrer">Uber Eats ↗</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
